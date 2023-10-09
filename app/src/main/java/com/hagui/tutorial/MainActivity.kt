@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.border
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,7 +32,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TutorialTheme{
-                Surface(modifier = Modifier.fillMaxSize()){
+                Surface(modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.surface){
                     MessageCard(Message("Android", "Jetpack Compose"))
                 }
             }
@@ -49,12 +51,23 @@ fun MessageCard(msg: Message){
             contentDescription = "Teste",
             modifier = Modifier
                 .size(40.dp)
-                .clip(CircleShape))
+                .clip(CircleShape)
+                .border(1.5.dp, MaterialTheme.colorScheme.onPrimaryContainer, CircleShape)
+
+
+
+
+
+
+        )
         Spacer(modifier = Modifier.width(8.dp))
         Column{
-            Text(text = msg.author)
+            Text(text = msg.author,
+                color = MaterialTheme.colorScheme.primary,
+                style = MaterialTheme.typography.titleMedium)
             Spacer(modifier = Modifier.height(4.dp))
-            Text(text = msg.body)
+            Text(text = msg.body,
+                style = MaterialTheme.typography.bodyMedium)
         }
     }
 }
